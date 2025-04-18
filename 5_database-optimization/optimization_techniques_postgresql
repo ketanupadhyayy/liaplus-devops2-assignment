@@ -1,0 +1,58 @@
+ Database & Storage Optimization (PostgreSQL)
+ 
+ Objective
+Optimize PostgreSQL database performance through indexing, query tuning, and data partitioning.
+
+---
+
+Indexing
+
+ Description
+Indexing improves query performance by allowing PostgreSQL to quickly locate rows without scanning the entire table.
+
+ Example
+```sql
+-- Create an index on the email column
+CREATE INDEX idx_users_email ON users(email);
+Benefit
+Improves performance of queries that filter using WHERE email = ...
+
+Query Optimization
+ Description
+Query optimization involves rewriting inefficient queries to enhance execution speed.
+ Tips
+Avoid SELECT * — fetch only required columns
+
+Use WHERE, JOIN, and LIMIT clauses appropriately
+
+Avoid subqueries where JOINs can be used
+
+Use EXPLAIN ANALYZE to understand query performance
+
+Before Optimization
+SELECT * FROM users WHERE email = 'ketan2002upadhyay@gmail.com';
+After Optimization
+
+SELECT id, name, email FROM users WHERE email = 'ketan2002upadhyay@gmail.com';
+Data Partitioning
+ Description
+Partitioning divides a large table into smaller pieces, improving performance on large datasets.
+
+ Example
+CREATE TABLE logs (
+  id SERIAL,
+  log_date DATE NOT NULL,
+  message TEXT
+) PARTITION BY RANGE (log_date);
+
+CREATE TABLE logs_2024_q1 PARTITION OF logs
+  FOR VALUES FROM ('2024-01-01') TO ('2024-04-01');
+Benefit
+Queries that use WHERE log_date only scan relevant partitions, reducing read time.
+
+ VACUUM and ANALYZE
+ Description
+PostgreSQL doesn't automatically reclaim space after DELETE/UPDATE. Use VACUUM to clean and ANALYZE to update planner stats.
+
+Command
+VACUUM ANALYZE;
