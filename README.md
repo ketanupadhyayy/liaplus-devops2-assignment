@@ -23,4 +23,6 @@ This repository contains the complete solution for all 8 DevOps tasks assigned b
 ## 📁 Folder Structure
 
 Each task has its own folder with the following structure:
+also you should see your Node.js app response.-
+ In browser, go to:  http://20.193.131.207:3000
 
