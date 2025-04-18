@@ -1,0 +1,41 @@
+Step 1: Create Azure VM
+- Go to Azure Portal > Virtual Machines > Create VM
+- Choose Ubuntu 20.04 LTS, Standard B1s
+- Set username: ubuntu
+- Allow SSH (port 22)
+- Create VM and public IP address
+
+Step 2: Connect to VM
+ssh ubuntu@20.193.131.207
+
+Step 3: Install Node.js, npm, Git, and PM2
+sudo apt update  
+sudo apt install nodejs npm git -y  
+sudo npm install -g pm2
+
+Step 4: Create Node.js App
+mkdir node_app  
+cd node_app  
+vi app.js  
+vi package.json  
+
+Step 5: Install Dependencies
+cd node_app  
+npm install
+
+Step 6: Run App with PM2
+pm2 start app.js --name node_app  
+pm2 save  
+pm2 startup  
+
+
+Step 7: Allow traffic on port 3000
+- Go to Azure > Your VM > Networking > Inbound Port Rules > Add Rule:
+  - Port: 3000
+  - Protocol: TCP
+  - Source: Any
+  - Action: Allow
+
+Step 8: Access App from Browser
+You should see your Node.js app response.-
+ In browser, go to:  http://20.193.131.207:3000
