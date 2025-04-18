@@ -1,0 +1,13 @@
+ Before Optimization
+```sql
+SELECT * FROM users WHERE email = 'user@example.com';
+-- Slow, scans entire table
+
+After Optimization (With Index)
+
+-- Create index
+CREATE INDEX idx_users_email ON users(email);
+
+-- Optimized Query
+SELECT id, name, email FROM users WHERE email = 'ketan2002upadhyay@gmail.com';
+-- Much faster due to index usage
