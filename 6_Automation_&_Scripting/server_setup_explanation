@@ -1,0 +1,42 @@
+#  Task 6: Automation & Scripting — Bash Script for Ubuntu Server Setup
+
+##  Script File: `server_setup.sh`
+
+This script automates the initial setup of an Ubuntu server, particularly useful for fresh VMs (e.g., on Azure or AWS). It includes essential package installations and configurations for a Node.js application environment.
+
+---
+
+## ⚙️ What the Script Does:
+
+### 1. **System Update**
+- Runs `apt-get update` and `upgrade` to ensure all packages are up-to-date.
+
+### 2. **Installs Essential Tools**
+- Installs commonly used packages: `git`, `curl`, and `ufw`.
+
+### 3. **Firewall Configuration**
+- Enables UFW (Uncomplicated Firewall)
+- Allows SSH (so we don’t lock ourselves out)
+- Automatically enables the firewall
+
+### 4. **Node.js Setup**
+- Installs the latest LTS version of Node.js using NodeSource script
+- Verifies `node` and `npm` installations
+
+### 5. **PM2 Setup**
+- Installs PM2 globally for Node.js process management
+
+---
+
+##  Optional Extensions
+- You can add Git clone commands to deploy a Node.js app
+- Add database (e.g., PostgreSQL) setup steps
+- Include monitoring tool installation (like Prometheus Node Exporter)
+
+---
+
+## Usage
+
+```bash
+chmod +x server_setup.sh
+./server_setup.sh
