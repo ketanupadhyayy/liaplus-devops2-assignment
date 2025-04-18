@@ -1,0 +1,62 @@
+# Steps to Configure Monitoring and Logging Tools (Prometheus + Grafana)
+
+## Objective
+To monitor application and system performance on an Azure VM by configuring Prometheus to collect metrics and Grafana to visualize them.
+
+---
+
+## 1. Set Up Prometheus
+
+### ➤ Download and Extract Prometheus
+
+```bash
+wget https://github.com/prometheus/prometheus/releases/download/v2.45.0/prometheus-2.45.0.linux-amd64.tar.gz
+tar -xvf prometheus-2.45.0.linux-amd64.tar.gz
+cd prometheus-2.45.0.linux-amd64
+Create a Prometheus Configuration File
+Create or modify prometheus.yml:
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'node_exporter'
+    static_configs:
+      - targets: ['localhost:9100']
+Start Prometheus:
+
+bash
+Copy
+Edit
+./prometheus --config.file=prometheus.yml
+Prometheus runs at: http://20.193.131.207:9090
+
+2. Install and Run Node Exporter (System Metrics)
+Node Exporter will run at http://20.193.131.207:9100/metrics.
+
+Keep it running in a screen or background process.
+
+3. Install Grafanav
+Access Grafana at: http://20.193.131.207:3000
+Default credentials: admin / admin
+
+4. Configure Grafana Dashboard
+Login to Grafana
+
+Go to Settings → Data Sources
+
+Add Prometheus as a data source (URL: http://localhost:9090)
+
+Import or create a dashboard:
+
+Use dashboard ID 1860 (Node Exporter Full) from Grafana's dashboard library
+
+Or create a custom dashboard to visualize:
+
+CPU usage
+
+RAM consumption
+
+Disk I/O
+
+Network throughput
+
