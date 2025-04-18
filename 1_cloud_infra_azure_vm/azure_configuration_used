@@ -1,0 +1,27 @@
+1. Resource Group
+•	Name: nodejs-deployment-rg
+•	Region: 
+•	Purpose: Grouping all related resources like VM, network interface, and security rules.
+________________________________________
+2. Virtual Machine
+•	Name: azureuser
+•	OS Image: Ubuntu 20.04 LTS
+•	Size: Standard B1s (1 vCPU, 1 GiB RAM)
+•	Authentication: SSH key-based login
+•	Admin Username: ubuntu
+•	Public IP Address: Assigned (Dynamic or Static)
+________________________________________
+3. Network Interface & IP
+•	Network Interface: Auto-created with the VM
+•	Public IP: To access the VM and app from the browser
+•	Private IP: Assigned automatically for internal networking
+________________________________________
+4. Network Security Group (NSG)
+•	Attached to: Virtual machine
+•	Inbound Rules Added:
+o	SSH (port 22) – For remote access
+o	HTTP/Custom (port 3000) – To serve Node.js app
+•	Priority: SSH (priority 1000), HTTP (priority 1001)
+________________________________________
+5. Disk
+•	OS Disk: 30 GB Standard SSD (default)
