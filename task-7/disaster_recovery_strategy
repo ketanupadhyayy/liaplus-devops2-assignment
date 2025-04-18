@@ -1,0 +1,66 @@
+#  Disaster Recovery Strategy for Cloud-based Enterprise Application (Azure)
+
+## Objective
+To ensure business continuity in case of service outages, data loss, or system failures by implementing a strong **Disaster Recovery (DR)** and **High Availability (HA)** strategy.
+
+---
+
+## Key Concepts
+
+| Term | Definition |
+|------|------------|
+| **RTO (Recovery Time Objective)** | Maximum acceptable time to restore service after a disaster. |
+| **RPO (Recovery Point Objective)** | Maximum acceptable data loss (in terms of time). |
+
+---
+
+##  Goals
+
+- Minimize **downtime** and **data loss**
+- Ensure application availability and data integrity
+- Meet compliance and audit requirements
+
+---
+
+##  DR & HA Strategy Components
+
+### 1. **Automated Backups**
+- Schedule daily/weekly backups using **Azure Backup Vault**
+- Store backups in geo-redundant storage (GRS)
+
+### 2. **Snapshot Recovery**
+- Use **Azure VM Snapshots** for quick state restoration
+
+### 3. **Geo-Redundancy**
+- Deploy the application in **multiple regions** using **Availability Zones**
+- Set up Azure Traffic Manager to route to healthy regions
+
+### 4. **Infrastructure as Code (IaC)**
+- Use **ARM templates** or **Terraform** to quickly redeploy infrastructure
+
+### 5. **Data Replication**
+- For databases, use **Azure SQL Geo-Replication** or **PostgreSQL Hyperscale**
+
+### 6. **Testing and Simulation**
+- Run **quarterly DR drills** to validate recovery plans
+- Keep detailed **runbooks** and logs
+
+---
+
+##  RTO & RPO
+
+| Component | RTO | RPO |
+|-----------|-----|-----|
+| Web App   | 30 minutes | 15 minutes |
+| Database  | 60 minutes | 10 minutes |
+| File Storage | 45 minutes | 30 minutes |
+
+---
+
+##  Summary
+
+- Store backups in multiple regions
+- Automate recovery using scripts or templates
+- Set up alerts and continuous monitoring
+- Perform periodic DR testing
+
