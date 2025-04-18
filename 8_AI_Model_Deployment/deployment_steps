@@ -1,0 +1,22 @@
+ AI Model Deployment Using Docker & Kubernetes
+
+Tools Used
+- Docker
+- Kubernetes (minikube or Azure AKS)
+- Flask (Python Web Framework)
+- Scikit-learn (for sample AI model)
+
+---
+
+ Steps to Deploy the AI Model
+
+ 1. Train and Export the Model
+- Use scikit-learn to train a simple model and save as `model.pkl`
+
+ 2. Create a Flask API
+- `app.py` serves model via `/predict` endpoint
+
+ 3. Create a Docker Image
+```bash
+docker build -t your-dockerhub-username/ai-model:latest .
+docker push your-dockerhub-username/ai-model:latest
