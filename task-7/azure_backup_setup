@@ -1,0 +1,57 @@
+#  Setting Up Automated Backups in Azure
+
+## Steps to Enable VM Backup Using Azure Backup Vault
+
+###  Step 1: Create a Recovery Services Vault
+1. Go to Azure Portal → "Recovery Services Vaults"
+2. Click **+ Create** → Fill in:
+   - Resource Group
+   - Vault Name
+   - Region
+
+---
+
+### Step 2: Register the VM
+1. Go to the vault → **Backup**
+2. Select:
+   - **Where is your workload running?** → "Azure"
+   - **What do you want to back up?** → "Virtual machine"
+3. Click **+ Add**, then choose the VM from the list
+
+---
+
+### Step 3: Configure Backup Policy
+1. Choose **Default policy** or create a **Custom Backup Policy**:
+   - Frequency: Daily at a specified time
+   - Retention: Choose daily/weekly/monthly retention
+2. Click **Enable Backup**
+
+---
+
+### Step 4: Restore Options
+- In case of failure:
+   - Go to Vault → "Backup Items"
+   - Select VM → Click "Restore VM"
+   - Choose restore point and recovery options
+
+---
+
+## Optional: Enable File-Level Recovery
+- Download **Recovery Services Agent**
+- Browse file system from restore points and recover selected files
+
+---
+
+##  Tip
+- Enable **Soft Delete** to prevent accidental deletion of backups
+
+---
+
+## Azure CLI (Optional)
+
+```bash
+az backup protection enable-for-vm \
+  --resource-group MyResourceGroup \
+  --vault-name MyBackupVault \
+  --vm MyVM \
+  --policy-name DefaultPolicy
