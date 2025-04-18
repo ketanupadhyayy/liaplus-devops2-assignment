@@ -26,3 +26,7 @@ Each task has its own folder with the following structure:
 also you should see your Node.js app response.-
  In browser, go to:  http://20.193.131.207:3000
 
+ *for grafana loging access-
+user - admin
+password - Ketan@1234
+
