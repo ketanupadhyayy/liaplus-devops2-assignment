@@ -1,0 +1,38 @@
+Explanation of Different Pipeline Stages
+Build Stage:
+
+Purpose: The build stage is responsible for preparing the application for deployment.
+
+Action: In this case, it installs the necessary dependencies using npm install.
+
+GitHub Action:
+
+- name: Install dependencies
+  run: npm install
+Test Stage: 
+
+Purpose: If you have tests for your Node.js app, the test stage would run them here.
+
+Action: A typical command could be npm test (if test scripts are defined).
+
+GitHub Action Example:
+
+- name: Run Tests
+  run: npm test
+Deploy Stage:
+
+Purpose: Deploy the built application to the target environment (Azure VM).
+
+Action: This stage uses SSH to connect to the Azure VM, pulls the latest code from the GitHub repository, and restarts the application using pm2.
+
+GitHub Action:
+
+- name: Deploy to Azure VM using SSH
+  run: |
+    echo "${{ secrets.SSH_PRIVATE_KEY }}" > key.pem
+    chmod 600 key.pem
+    ssh -o StrictHostKeyChecking=no -i key.pem ${{ secrets.AZURE_VM_USER }}@${{ secrets.AZURE_VM_IP }} << 'EOF'
+      cd ~/node_app
+      git pull origin main
+      pm2 restart app.js
+    EOF
